@@ -13,6 +13,7 @@ namespace filemanagementapi.Models.Response
         public string Token { get; set; }
         public string Message { get; set; }
         public int Status { get; set; }
+        public bool? admin { get; set; }
 
     }
 }

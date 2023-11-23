@@ -12,4 +12,6 @@ public class UserModel
     [Required]
     public string Password { get; set; }
     public string? PhoneNumber { get; set; }
+
+    public bool? admin {get;set;}=false;
 }

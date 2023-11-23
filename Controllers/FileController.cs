@@ -75,7 +75,15 @@ public class FileController : ControllerBase
     public async Task<ActionResult> GetFileByUserID([FromRoute] string id)
     {
 
-        var files = await context.FileModels.Where(f => f.UserId == id).ToListAsync();
+        var files = await context.FileModels.Where(f => f.UserId == id).Select(f => new FileModel()
+        {
+            Id = f.Id,
+            FileName = f.FileName,
+            UserId = f.UserId,
+            Email = f.Email,
+            FileUrl = String.Format("{0}://{1}{2}/Resources/{3}", Request.Scheme, Request.Host, Request.PathBase, f.FileUrl),
+            dateTime = f.dateTime
+        }).ToListAsync();
         return Ok(files);
 
     }
@@ -117,12 +125,12 @@ public class FileController : ControllerBase
            foreach (var item in files)
            {
                 var ok=file.DeleteFile(item.FileUrl);
+                context.Remove(item);
            }
-
-           context.FileModels.ExecuteDelete()
+           await context.SaveChangesAsync();
         }
 
-        return Ok("ddlld");
+        return Ok("Delete All");
 
     }
 }

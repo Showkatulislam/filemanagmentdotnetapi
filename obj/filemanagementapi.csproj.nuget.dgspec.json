@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\filemanagementapi\\filemanagementapi.csproj": {}
+    "C:\\filemanagementapi\\filemanagementapi.csproj": {}
   },
   "projects": {
-    "c:\\filemanagementapi\\filemanagementapi.csproj": {
+    "C:\\filemanagementapi\\filemanagementapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\filemanagementapi\\filemanagementapi.csproj",
+        "projectUniqueName": "C:\\filemanagementapi\\filemanagementapi.csproj",
         "projectName": "filemanagementapi",
-        "projectPath": "c:\\filemanagementapi\\filemanagementapi.csproj",
+        "projectPath": "C:\\filemanagementapi\\filemanagementapi.csproj",
         "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-        "outputPath": "c:\\filemanagementapi\\obj\\",
+        "outputPath": "C:\\filemanagementapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config"

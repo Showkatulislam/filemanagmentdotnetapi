@@ -12,8 +12,8 @@ using filemanagementapi.Context;
 namespace filemanagementapi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231121182322_all")]
-    partial class all
+    [Migration("20231123144309_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,11 +72,13 @@ namespace filemanagementapi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("admin")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

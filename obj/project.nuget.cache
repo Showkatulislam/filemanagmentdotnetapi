@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OjGDc2M599dB+Y1bkHgm6nv2N4gMy9vjJz+8JH7wafwhfgIAD2H/fhBl/FosTvoxn6bHAa78p8T5kyCYlstzqQ==",
+  "dgSpecHash": "jAA6hea9u9uldpgQOxJW2JNN/EZGmi4W5B7z1yEebKGmI5tNucoh1JqmfLN5ipgNEscvw8T+9mD4ueZocqCBYQ==",
   "success": true,
-  "projectFilePath": "c:\\filemanagementapi\\filemanagementapi.csproj",
+  "projectFilePath": "C:\\filemanagementapi\\filemanagementapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hp\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

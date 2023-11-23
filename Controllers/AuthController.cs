@@ -4,6 +4,7 @@ using filemanagementapi.Domain.UserModel;
 using filemanagementapi.Interfaces;
 using filemanagementapi.Models.Request;
 using filemanagementapi.Models.Response;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,7 +35,7 @@ public class AuthController : ControllerBase
         }
 
         bool createUser = auth.Register(userModel);
-         await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         if (createUser)
         {
@@ -48,13 +49,12 @@ public class AuthController : ControllerBase
             status.Message = "Internal Erorr.";
             return Ok(status);
         }
-
     }
     [HttpPost]
     public async Task<IActionResult> Login([FromBody] LogUserModel logUserModel)
     {
 
-        var existUser = await _context.userModels.SingleOrDefaultAsync(u => u.Email.ToLower().Trim() == logUserModel.Email.ToLower().Trim() && u.Password.ToLower().Trim()==logUserModel.Password.ToLower().Trim());
+        var existUser = await _context.userModels.SingleOrDefaultAsync(u => u.Email.ToLower().Trim() == logUserModel.Email.ToLower().Trim() && u.Password.ToLower().Trim() == logUserModel.Password.ToLower().Trim());
         var status = new Status();
         var userResponse = new ResponseUser();
         if (existUser != null)
@@ -67,6 +67,7 @@ public class AuthController : ControllerBase
                 userResponse.Id = existUser.Id;
                 userResponse.Status = 200;
                 userResponse.Token = token.Item2;
+                userResponse.admin=existUser.admin;
                 userResponse.Message = "User login SuccessFully.";
                 return Ok(userResponse);
             }
@@ -84,6 +85,37 @@ public class AuthController : ControllerBase
             return Ok(status);
         }
 
+    }
+    [HttpGet("{email}")]
+    public async Task<ActionResult<IEnumerable<UserModel>>> getAllUser([FromRoute] string email)
+    { var status = new Status();
+       var users=await _context.userModels.Where(u => u.Email != email).ToListAsync();
+       if(users!=null){
+        return Ok(users);
+       }
+       else{
+        status.StatusCode=401;
+        status.Message="User Not Found";
+        return Ok(status);
+       }
+    }
+    [HttpPut("{email}")]
+    public async Task<IActionResult> makeAdmin([FromRoute] string email)
+    {
+        var user = await _context.userModels.SingleOrDefaultAsync(u => u.Email == email);
+        var status = new Status();
+        if (user != null)
+        {
+            user.admin = true;
+            await _context.SaveChangesAsync();
+            status.StatusCode=201;
+            status.Message="Make admin Successfully";
+            return Ok(status);
+        }else{
+            status.StatusCode=401;
+            status.Message="user Not Found";
+            return Ok(status);
+        }
 
     }
 }
